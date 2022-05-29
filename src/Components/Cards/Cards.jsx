@@ -5,6 +5,7 @@ import swapi from "./../../DAL/DAL";
 import Context from "./../../context";
 import {useParams} from "react-router-dom";
 import Header from "./../Header";
+import Filter from "./../FilterBar";
 
 let StyledCards = styled.div`
   background: transparent;
@@ -28,9 +29,17 @@ let StyledCards = styled.div`
 
 
 function Cards(props){
+
+  let cards = props.cards;
+
+  if(props.gender && props.gender != "all"){
+    cards = cards.filter((e,i)=>e.gender==props.gender);
+  }
+
+
   return <StyledCards onScroll={props.scrollHandler}>
             <Header />
-            {props.cards?.map((e,i)=>props.type == "planets" ? <PlanetCard key={e.name} {...e} i={i}/> : <CharCard key={e.name} {...e}/>)}
+            {cards?.map((e,i)=>props.type == "planets" ? <PlanetCard key={e.name} {...e} i={i}/> : <CharCard key={e.name} {...e}/>)}
          </StyledCards>
 }
 
@@ -38,6 +47,7 @@ function PeopleCards(props){
 
   let [cards, setCards] = useState([])
   let {planetId} = useParams();
+  let [gender, filter] = useState("all");
 
   useEffect(()=>{
     swapi.getPlanetResidents(planetId)
@@ -47,8 +57,10 @@ function PeopleCards(props){
 
   },[])
 
-  return <Cards type={props.type} cards={cards}/>
+  return <><Filter gender={gender} filter={filter}/><Cards gender={gender} type={props.type} cards={cards}/></>
 }
+
+/**/
 
 function PlanetCards(props){
 

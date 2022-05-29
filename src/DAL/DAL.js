@@ -16,6 +16,18 @@ function getResident(url){
   return axios.get(url);
 }
 
+function getFilm(url){
+  return axios.get(url);
+}
+
+function getVehicle(url){
+  return axios.get(url);
+}
+
+function getStarship(url){
+  return axios.get(url);
+}
+
 export default {
-  getData,getPlanetResidents,getResident
+  getData,getPlanetResidents,getResident,getFilm,getStarship,getVehicle,
 }
