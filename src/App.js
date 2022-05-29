@@ -1,7 +1,6 @@
 import styled, {createGlobalStyle} from "styled-components";
 import Container from "./Container";
 import {BrowserRouter} from "react-router-dom";
-import Fade from "./Components/Fade";
 import Stars from "./Components/Stars";
 
 
@@ -31,9 +30,8 @@ function App() {
     <BrowserRouter>
       <StyledApp>
         <Stars />
-        <Fade />
         <Global />
-        <Container />
+        <Container/>
       </StyledApp>
     </BrowserRouter>
   );

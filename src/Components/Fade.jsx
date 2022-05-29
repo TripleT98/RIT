@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import {useParams, Link, useNavigate} from "react-router-dom";
+import {memo} from "react";
 
 let StyledFade = styled.div`
  color: rgb(254, 223, 65);
@@ -11,6 +13,18 @@ let StyledFade = styled.div`
  z-index:1;
 `
 
-export default function Fade(){
-  return <StyledFade/>
+let StyledRedirect = styled.div`
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: white;
+  font-size: 2rem;
+
+`
+
+export default function Fade({currPlanet, setPlanet}){
+
+  return <StyledFade>
+           {currPlanet != "" ? <Link to="planets" onClick={()=>setPlanet("")}><StyledRedirect>Planets</StyledRedirect></Link> : ""}
+         </StyledFade>
 }
