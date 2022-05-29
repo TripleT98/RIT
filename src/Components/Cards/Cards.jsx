@@ -19,10 +19,12 @@ let fade = keyframes`
 
 let Empty = styled.div`
   position: absolute;
-  bottom: 100px;
+  bottom: 500px;
   left: 50%;
   transform: translateX(-50%);
   color: white;
+  font-size: 100px;
+  color: #ffc909;
 `
 
 let StyledFetch = styled.div`
@@ -33,7 +35,7 @@ let StyledFetch = styled.div`
   left: 50%;
   transform: translateX(-50%);
   width: 100px;
-  height:100px;
+  height: 100px;
   animation: ${fade} 1s infinite linear;
 `
 
@@ -60,17 +62,17 @@ let StyledCards = styled.div`
 
 function Cards(props){
 
-  let epmty = !props.fetching && props.cards.length == 0;
   let cards = props.cards;
 
   if(props.gender && props.gender != "all"){
     cards = cards.filter((e,i)=>e.gender==props.gender);
   }
 
+  let epmty = !props.fetching && cards.length == 0;
 
   return <StyledCards onScroll={props.scrollHandler}>
             <Header />
-            {epmty?<Empty>Empty</Empty>:cards?.map((e,i)=>props.type == "planets" ? <PlanetCard key={e.name} {...e} i={i}/> : <CharCard key={e.name} {...e}/>)}
+            {epmty?<Empty>THIS CATEGORY IS EMPTY</Empty>:cards?.map((e,i)=>props.type == "planets" ? <PlanetCard change={props.change} key={e.name} {...e} i={i}/> : <CharCard key={e.name} {...e}/>)}
          </StyledCards>
 }
 
@@ -121,7 +123,7 @@ function PlanetCards(props){
     }
   }
 
-  return isFetching && cards.length == 0?<StyledFetch></StyledFetch>:<Cards fetching={isFetching} type={props.type} cards={cards} scrollHandler={scrollHandler}/>
+  return isFetching && cards.length == 0?<StyledFetch></StyledFetch>:<Cards fetching={isFetching} type={props.type} cards={cards} scrollHandler={scrollHandler} change={props.change}/>
 }
 
 PeopleCards = memo(PeopleCards);

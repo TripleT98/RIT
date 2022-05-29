@@ -3,7 +3,7 @@ import {useParams, Link, useNavigate} from "react-router-dom";
 import {memo} from "react";
 
 let StyledFade = styled.div`
- color: rgb(254, 223, 65);
+
  position: absolute;
  top: 0px;
  left: 0px;
@@ -19,12 +19,11 @@ let StyledRedirect = styled.div`
   left: 10px;
   color: white;
   font-size: 2rem;
-
+  color: rgb(254, 223, 65);
 `
 
-export default function Fade({currPlanet, setPlanet}){
-
-  return <StyledFade>
-           {currPlanet != "" ? <Link to="planets" onClick={()=>setPlanet("")}><StyledRedirect>Planets</StyledRedirect></Link> : ""}
+export default function Fade(props){
+  return <StyledFade onClick={()=>{props.change((prev)=>!prev)}}>
+           {props.isPlanet == "" ? <Link to="planets"><StyledRedirect>PLANETS</StyledRedirect></Link> : ""}
          </StyledFade>
 }

@@ -274,7 +274,7 @@ export function PlanetCard(props){
 
   return   <Link to={`/people/${planetId}/${props.name}`} style={{textDecoration: "none"}}>
             <StyledCard i={props.i} onMouseEnter={()=>{hover(true)}} onMouseLeave={()=>{hover(false)}}
-            hovered={hovered}>
+            hovered={hovered} onClick={()=>{props.change((prev)=>!prev)}}>
               <StyledImg hovered={hovered}/>
               <StyledInfo hovered={hovered}>
                 <StyledProp>Name: {props.name}</StyledProp>

@@ -17,14 +17,14 @@ let StyledContainer = styled.div`
 
 function Container() {
 
-  let [currPlanet, setPlanet] = useState("");
+  let [isPlanet, change] = useState(true);
 
   return (
       <StyledContainer>
-        <Fade currPlanet={currPlanet} setPlanet={currPlanet}/>
+        <Fade isPlanet={isPlanet} change={change}/>
         <Routes>
-          <Route path="planets" element={<PlanetCards type="planets" setPlanet={setPlanet}/>} />
-          <Route path="people/:planetId/:planet" element={<PeopleCards type="people" planet={currPlanet}/>} />
+          <Route path="planets" element={<PlanetCards type="planets" change={change}/>} />
+          <Route path="people/:planetId/:planet" element={<PeopleCards type="people"/>} />
           <Route path="/" element={<Navigate replace to="planets"/>}/>
         </Routes>
       </StyledContainer>
