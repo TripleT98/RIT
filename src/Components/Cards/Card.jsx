@@ -267,7 +267,6 @@ let StyledProp = styled.div`
 `
 
 export function PlanetCard(props){
-
   let [hovered, hover] = useState(false);
 
   let planetId = getPlanetId(props.url);
