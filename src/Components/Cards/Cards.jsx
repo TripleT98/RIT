@@ -1,5 +1,6 @@
 import styled, {keyframes} from "styled-components";
-import {PlanetCard, CharCard} from "./Card";
+import {PlanetCard, CharCard, MainInfo} from "./Card";
+import {StyledCard} from "./cardsStyles";
 import {useState, useEffect, memo, useContext} from "react";
 import swapi from "./../../DAL/DAL";
 import Context from "./../../context";
@@ -49,7 +50,8 @@ let StyledCards = styled.div`
   height: 300%;
   width: 200%;
   margin: auto;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: visible;
   -ms-overflow-style: none;
   &::-webkit-scrollbar{
     display: none;
@@ -58,6 +60,7 @@ let StyledCards = styled.div`
   position: relative;
   perspective: 450px;
 `
+
 
 
 function Cards(props){
@@ -72,11 +75,13 @@ function Cards(props){
 
   return <StyledCards onScroll={props.scrollHandler}>
             <Header />
+            {props.type=="people"?<MainInfo {...props.planetParams}/>:""}
             {epmty?<Empty>THIS CATEGORY IS EMPTY</Empty>:cards?.map((e,i)=>props.type == "planets" ? <PlanetCard change={props.change} key={e.name} {...e} i={i}/> : <CharCard key={e.name} {...e}/>)}
          </StyledCards>
 }
 
 function PeopleCards(props){
+
 
   let [cards, setCards] = useState([])
   let {planetId} = useParams();
@@ -93,7 +98,7 @@ function PeopleCards(props){
 
   },[])
 
-  return fetching?<StyledFetch></StyledFetch>:<><Filter gender={gender} filter={filter}/><Cards fetching={fetching} gender={gender} type={props.type} cards={cards}/></>
+  return fetching?<StyledFetch></StyledFetch>:<><Filter gender={gender} filter={filter}/><Cards planetParams={props.planetParams} fetching={fetching} gender={gender} type={props.type} cards={cards}/></>
 }
 
 /**/

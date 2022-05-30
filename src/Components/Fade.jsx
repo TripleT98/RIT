@@ -27,7 +27,7 @@ let StyledRedirect = styled.div`
 
 export default function Fade(props){
 
-  return <StyledFade onClick={()=>{props.change((prev)=>!prev)}}>
-           {props.isPlanet == "" ? <Link to="planets"><StyledRedirect>PLANETS</StyledRedirect></Link> : ""}
+  return <StyledFade onClick={()=>{props.change(false)}}>
+           {typeof props.isPlanet == "object" ? <Link to="planets"><StyledRedirect>PLANETS</StyledRedirect></Link> : ""}
          </StyledFade>
 }

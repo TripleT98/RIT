@@ -48,7 +48,7 @@ let StyledFilter = styled.div`
  left:60px;
  width: 150px;
  @media(max-width: 1550px){
-    top: 300px;
+    top: 350px;
     left: 60px;
   }
 `

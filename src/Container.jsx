@@ -1,7 +1,7 @@
 import {PeopleCards, PlanetCards} from "./Components/Cards/Cards";
 import styled from "styled-components";
 import {useState} from "react";
-import {Routes, Route, useNavigate, Navigate, useParams} from "react-router-dom";
+import {Routes, Route, useNavigate, Navigate} from "react-router-dom";
 import Context from "./context";
 import Fade from "./Components/Fade";
 
@@ -18,13 +18,13 @@ let StyledContainer = styled.div`
 function Container() {
 
   let [isPlanet, change] = useState(true);
-  let params = useParams();
+
   return (
       <StyledContainer>
         <Fade isPlanet={isPlanet} change={change}/>
         <Routes>
           <Route path="planets" element={<PlanetCards type="planets" change={change}/>} />
-          <Route path="people/:planetId/:planet" element={<PeopleCards type="people"/>} />
+          <Route path="people/:planetId/:planet" element={<PeopleCards planetParams={isPlanet} type="people"/>} />
           <Route path="/" element={<Navigate replace to="planets"/>}/>
         </Routes>
       </StyledContainer>
