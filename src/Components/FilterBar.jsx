@@ -44,10 +44,13 @@ let Holo = styled.div`
 
 let StyledFilter = styled.div`
  position:absolute;
- border: 1 solid red;
  top: 500px;
  left:60px;
  width: 150px;
+ @media(max-width: 1550px){
+    top: 300px;
+    left: 60px;
+  }
 `
 let StyledContainer = styled.div`
   position: relative;
